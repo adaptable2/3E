@@ -20,9 +20,19 @@
                     <span class="bar-menu"></span>
                     <span class="bar-menu"></span>
                     <span class="bar-menu"></span>
-                </button>
-
+                </button>                
                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                    <?php
+                    $defaults = array(
+                        'theme_location'    => 'principal-menu',
+                        'container'             => 'false',
+                        'menu_class'            => 'navbar-nav'
+                    );
+                    wp_nav_menu( $defaults );
+
+                    ?>
+                </div> 
+<!--                 <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li class="nav-item active">
                             <a class="nav-link js-btn" href="#inicio">Inicio</a>
@@ -40,7 +50,7 @@
                             <a class="nav-link js-btn" href="#contacto">Contacto</a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
             </nav>
         </div>
     </div>

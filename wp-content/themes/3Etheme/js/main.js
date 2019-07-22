@@ -4,7 +4,7 @@ $(window).on('load', function() {
     var lastId,
         banerAl = $('.banner-principal').height(),
         topMenu = $(".navbar-nav"),
-        topMenuHeight = topMenu.outerHeight() + 112,
+        topMenuHeight = topMenu.outerHeight() + 100,
         // All list items
         menuItems = topMenu.find("a"),
         // Anchors corresponding to menu items
@@ -14,6 +14,7 @@ $(window).on('load', function() {
                 return item;
             }
         });
+
     $('.img-pop').on('click', function() {
         $('.slider').slick('setPosition');
     });
@@ -23,7 +24,16 @@ $(window).on('load', function() {
 
     $('.carouselmarcas').slick({
         slidesToShow: 4,
-        infinite: true
+        infinite: true,
+          responsive: [
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+          ]
     });
 
     if ($(window).scrollTop() > banerAl - 112) {
@@ -32,7 +42,7 @@ $(window).on('load', function() {
         $('header').css('background', '#003e5200');
     }
 
-    $(".js-btn").click(function() {
+    $(".navbar-nav a,.js-btn,.menu a").click(function() {
         let href = $(this).attr('href');
         $('html, body').animate({
             scrollTop: $(href).offset().top - 112
@@ -49,10 +59,9 @@ $(window).on('load', function() {
         });
     });
 
-    $(window).scroll(function() {
+    function scrollmenu(){
         // Get container scroll position
         var fromTop = $(this).scrollTop() + topMenuHeight;
-
         // Get id of current scroll item
         var cur = scrollItems.map(function() {
             if ($(this).offset().top < fromTop)
@@ -69,6 +78,10 @@ $(window).on('load', function() {
                 .parent().removeClass("active")
                 .end().filter("[href='#" + id + "']").parent().addClass("active");
         }
+    }
+    scrollmenu();
+    $(window).scroll(function() {
+        scrollmenu();
     });
 
 });

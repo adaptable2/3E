@@ -63,6 +63,27 @@ if (function_exists('add_theme_support'))
 \*------------------------------------*/
 
 // HTML5 Blank navigation
+
+function registro_menu(){
+    register_nav_menus(
+        array(
+            'principal-menu' => __( 'Menu Principal' )
+        )
+    );
+}
+
+add_action('init', 'registro_menu');
+
+function registro_menu_footer(){
+    register_nav_menus(
+        array(
+            'footer-menu' => __( 'Menu Footer' )
+        )
+    );
+}
+
+add_action('init', 'registro_menu_footer');
+
 function html5blank_nav()
 {
 	wp_nav_menu(

@@ -1,22 +1,13 @@
 <footer class="play-font color-yellow">
     <img src="<?php echo get_template_directory_uri(); ?>/img/logo-footer.png" alt="" class="img-fluid logo-footer ">
-    <ul>
-        <li>
-            <a class="nav-link js-btn" href="#inicio">INICIO</a>
-        </li>
-        <li>
-            <a class="nav-link js-btn" href="#nosotros">NOSOTROS</a>
-        </li>
-        <li>
-            <a class="nav-link js-btn" href="#servicios">SERVICIOS</a>
-        </li>
-        <li>
-            <a class="nav-link js-btn" href="#proyectos">PROYECTOS</a>
-        </li>
-        <li>
-            <a class="nav-link js-btn" href="#contacto">CONTACTO</a>
-        </li>
-    </ul>
+        <?php
+        $defaults = array(
+            'theme_location'    => 'footer-menu',
+            'container'             => 'false'
+        );
+        wp_nav_menu( $defaults );
+
+        ?>
     <a class="arrow-move arrow-move-up js-btn" href="#inicio"></a>
     <small>©2019 3E Ingeniería. All Rights Reserved. Website by Actividad Creativa.</small>
 </footer>

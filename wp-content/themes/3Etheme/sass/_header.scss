@@ -1,0 +1,67 @@
+header.nav-page{
+	z-index: 3;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	animation: 0.5s;
+	a{
+		color: $amarillo;		
+	}
+}
+.navbar-toggler{
+	padding: 0;
+	border: none;
+	&:focus{
+		outline: none;
+	}
+}
+.bar-menu{
+	width: 25px;
+	height: 2px;
+	margin: 4px 0;
+	background: $amarillo;
+	display: block;
+}
+.navbar-brand{
+	max-width: 50px;
+	@media only screen and (min-width: 576px){
+		max-width: 80px;
+	}
+}
+.menu-item{
+	padding-bottom: 2px;
+	&.active{
+		position: relative;
+		border-bottom: solid 3px $amarillo;
+	}
+}
+.nav-link-header,.nav-link,.dropdown-item,.menu a{
+	padding: 0 10px;
+	font-family: 'Play';
+	font-weight: bold;
+}
+.navbar-collapse{
+	background: rgba(0,62,82,0.7);
+	padding: 20px;
+	margin: 0 -15px;
+	@media only screen and (min-width: 768px){
+		&{
+			background: transparent;
+		}
+	}
+}
+.dropdown-menu{
+	background: transparent;
+	box-shadow: none;
+	border: none;
+}
+
+.navbar-nav{
+	a{
+		font-family: 'play';
+		font-weight: bold;
+	    padding-right: .5rem;
+	    padding-left: .5rem;
+	}
+}

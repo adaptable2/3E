@@ -39,7 +39,6 @@
                             $texto_desc = $texto->post_content;
                             $texto_img = wp_get_attachment_url( get_post_thumbnail_id($texto->ID, 'full') ); // Url de la imagen en tamaño Full
                   ?>
-
                 <p><?php echo $texto_desc; ?></p>
                 <?php
                  endforeach;
@@ -159,93 +158,75 @@
 		<?php
     		endif 
         ?>
+
+
 <section class="container p-content px-0" id="proyectos">
     <h2 class="color-blue title-line">PROYECTOS</h2>
     <div class="carousel-pop slide">
+    <?php 
+        // Argumentos para una busqueda de post type
+        $args = array(
+          'post_type' => 'proyecto', // Nombre del post type
+          'order' => 'ASC'
+        );
+        $proyectos = new WP_Query($args);
+        if ($proyectos->posts):
+          // Foreach para recorrer el resultado de la busqueda
+            foreach ($proyectos->posts as $proyecto):
+              $proyecto_name = $proyecto->post_title;
+              $proyecto_img = wp_get_attachment_url( get_post_thumbnail_id($proyecto->ID, 'full') ); // Url de la imagen en tamaño Full
+              $proyecto_fecha = $proyecto->fecha_proyecto;
+              $proyecto_ubicacion = $proyecto->ubicacion;
+              $proyecto_reto = $proyecto->tab_reto;
+              $proyecto_solucion = $proyecto->tab_solucion;
+      ?>
         <div>
             <div class="row mx-0">
                 <div class="col-12 col-md-6">
                     <a href="#" onclick="restartSlick()" data-toggle="modal" class="d-block img-pop" data-target="#exampleModal">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/carouselimg.jpg" alt="" class="img-fluid">
+                        <img src="<?php echo $proyecto_img;?>" alt="" class="img-fluid">
                     </a>
                     <div class="carousel-text d-flex bg-blue play-font color-yellow flex-wrap">
                         <div class="col-12 col-sm-4">
                             <p>CLIENTE
-                                <span>BANCOLOMBIA</span>
+                                <span><?php echo $proyecto_name;?></span>
+                                    
                             </p>
                         </div>
                         <div class="col-12 col-sm-4">
                             <p>UBICACIÓN
-                                <span>MEDELLÍN, CO.</span>
+                                <span><?php echo $proyecto_ubicacion;?></span>
                             </p>
                         </div>
                         <div class="col-12 col-sm-4">
                             <p>FECHA
-                                <span>Marzo 27, 2014</span>
+                                <span><?php echo $proyecto_fecha;?></span>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="col-12 col-md-5 offset-md-1">
                     <div id="accordion2" class="w-100 acordion-item">
-                        <a class="card-link play-font color-blue" data-toggle="collapse" href="#collapseOne1">EL RETO</a>
-                        <div id="collapseOne1" class="collapse show" data-parent="#accordion2">
+                        <a class="card-link play-font color-blue" data-toggle="collapse" href="#collapseOne<?php echo $k;?>">EL RETO</a>
+                        <div id="collapseOne<?php echo $k?>" class="collapse show" data-parent="#accordion2">
                             <div class="card-body">
-                                1 3e-Ingeniería es una empresa que ofrece soluciones integrales en las áreas de consultoría eléctrica a nivel residencial, comercial, industrial y hospitalario, de igual forma en el suministro y montaje de obras electromecánicas en las áreas mencionadas.
+                                <?php echo $proyecto_reto;?>
                             </div>
                         </div>
-                        <a class="collapsed card-link play-font color-blue" data-toggle="collapse" href="#collapseTwo1">LA SOLUCIÓN</a>
-                        <div id="collapseTwo1" class="collapse" data-parent="#accordion2">
+                        <a class="collapsed card-link play-font color-blue" data-toggle="collapse" href="#collapseTwo<?php echo $k;?>">LA SOLUCIÓN</a>
+                        <div id="collapseTwo<?php echo $k?>" class="collapse" data-parent="#accordion2">
                             <div class="card-body">
-                                Lorem ipsum..
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div>
-            <div class="row mx-0">
-                <div class="col-12 col-md-6">
-                    <a href="#" onclick="restartSlick()" data-toggle="modal" class="d-block img-pop" data-target="#exampleModal">
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/carouselimg.jpg" alt="" class="img-fluid">
-                    </a>
-                    <div class="carousel-text d-flex bg-blue play-font color-yellow flex-wrap">
-                        <div class="col-12 col-sm-4">
-                            <p>CLIENTE
-                                <span>BANCOLOMBIA</span>
-                            </p>
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <p>UBICACIÓN
-                                <span>MEDELLÍN, CO.</span>
-                            </p>
-                        </div>
-                        <div class="col-12 col-sm-4">
-                            <p>FECHA
-                                <span>Marzo 27, 2014</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-5 offset-md-1">
-                    <div id="accordion2" class="w-100 acordion-item">
-                        <a class="card-link play-font color-blue" data-toggle="collapse" href="#collapseOne1">EL RETO</a>
-                        <div id="collapseOne1" class="collapse show" data-parent="#accordion2">
-                            <div class="card-body">
-                                2 3e-Ingeniería es una empresa que ofrece soluciones integrales en las áreas de consultoría eléctrica a nivel residencial, comercial, industrial y hospitalario, de igual forma en el suministro y montaje de obras electromecánicas en las áreas mencionadas.
-                            </div>
-                        </div>
-                        <a class="collapsed card-link play-font color-blue" data-toggle="collapse" href="#collapseTwo1">LA SOLUCIÓN</a>
-                        <div id="collapseTwo1" class="collapse" data-parent="#accordion2">
-                            <div class="card-body">
-                                Lorem ipsum..
+                                <?php echo $proyecto_solucion;?>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <?php
+            endforeach;
+            endif; 
+        ?>
     </div>
 </section>
 
@@ -283,41 +264,36 @@
         <div class="col-12 col-md-6 bg-celeste">
             <div class="form-contact">
                 <h2 class="color-blue title-line">CONTACTANOS</h2>
-                <form action="/action_page.php" class="row">
-                    <div class="col-12 col-md-6">
-                        <input type="text" name="firstname" placeholder="NOMBRES">
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <input type="text" name="lastname" placeholder="APELLIDOS">
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <input type="text" name="firstname" placeholder="E-MAIL">
-                    </div>
-                    <div class="col-12 col-md-6">
-                        <input type="text" name="lastname" placeholder="CELUAR">
-                    </div>
-                    <div class="col-12">
-                        <textarea name="" id="" cols="30" rows="10" placeholder="MENSAJE"></textarea>
-                        <a class="btn-general btn-form" href="">ENVIAR</a>
-                    </div>
-                </form> 
+
+                <?php 
+                    // Argumentos para una busqueda de post type
+                    $args = array(
+                      'post_type' => 'contacto', // Nombre del post type
+                      'order' => 'ASC'
+                    );
+                    $contactos = new WP_Query($args);
+                    if ($contactos->posts):
+                      // Foreach para recorrer el resultado de la busqueda
+                        foreach ($contactos->posts as $contacto):
+                          $contacto_desc = $contacto->code;
+                          $contacto_descripcion = $contacto->texto_formulario;
+                          $contacto_contacto = $contacto->datos_contacto;
+                  ?> 
+                  <?php
+                     endforeach;
+                     endif; 
+                    ?>
+                <?php echo $contacto_desc;?>
             </div>
         </div>
         <div class="col-12 col-md-6 px-0 d-flex text-form play-font color-blue">
             <div class="bg-yellow data-text d-flex justify-content-center flex-column">
-                <p>Si tienes alguna inquietud o sugerencia, estás en el lugar correcto, aquí puedes escribirnos, estamos dispuestos a responder todas tus preguntas. </p><p>Responderemos tu mensaje en las próximas 12 horas.</p>
+                <?php echo $contacto_descripcion;?>
             </div>
             <div class="data-contact play-font d-flex flex-column justify-content-center">
-                <p>Email</p>
-                <p>contacto@3e-ingenieria.com</p>
-                <p>Celular</p>
-                <p>314 887 36 58</p>
-                <p>Medellin, CO.</p>
+                <?php echo $contacto_contacto;?>
             </div>
         </div>
     </div>
 </section>
-
-
-
-<?php get_footer(); ?>
+<?php get_footer();?>
