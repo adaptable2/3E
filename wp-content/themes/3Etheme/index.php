@@ -161,7 +161,9 @@
 
 
 <section class="container p-content px-0" id="proyectos">
-    <h2 class="color-blue title-line">PROYECTOS</h2>
+    <div class="container">
+        <h2 class="color-blue title-line">PROYECTOS</h2>
+    </div>
     <div class="carousel-pop slide">
     <?php 
         // Argumentos para una busqueda de post type

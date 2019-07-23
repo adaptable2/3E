@@ -49,13 +49,38 @@
 		border-left: solid 2px $azul;
 	}
 }
+.slick-arrow{
+	z-index: 1;
+	position: absolute;
+	bottom: inherit;
+	top: 50%;
+	transform: translateY(-50%);
+	background: $amarillo;
+	font: 0/0 a;
+	border:none;
+	outline: inherit;
+	width: 40px;
+	height: 40px;
+	display: block;  
+	&:after{
+		content: "";
+		display: block;
+		width: 10px;
+		height: 10px;
+		margin-left: 50%;
+		transform: translateX(-50%) rotate(-45deg);
+	}
+}
+
 .carousel-pop{
 	.slick-arrow{
+		top: 20%;
+		transform: translateY(-20%);
 		@media only screen and (min-width: 576px){
 			top: 40%;
 			transform: translateY(-40%);
 		}
-		@media only screen and (min-width: 768px){
+		@media only screen and (min-width: 992px){
 			bottom: 99px;	
 			top: inherit;
 			transform: inherit;
@@ -74,29 +99,5 @@
 		@media only screen and (min-width: 768px){
 			left: 15px;
 		}
-	}
-}
-.slick-arrow{
-	z-index: 1;
-	position: absolute;
-	bottom: inherit;
-	top: 20%;
-	transform: translateY(-20%);
-	background: $amarillo;
-	font: 0/0 a;
-	border:none;
-	outline: inherit;
-	width: 40px;
-	height: 40px;
-	display: block;  
-	top: 50%;
-	transform: translateY(-50%);
-	&:after{
-		content: "";
-		display: block;
-		width: 10px;
-		height: 10px;
-		margin-left: 50%;
-		transform: translateX(-50%) rotate(-45deg);
 	}
 }
