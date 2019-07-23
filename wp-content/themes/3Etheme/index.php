@@ -173,17 +173,17 @@
         if ($proyectos->posts):
           // Foreach para recorrer el resultado de la busqueda
             foreach ($proyectos->posts as $proyecto):
-              $proyecto_name = $proyecto->post_title;
-              $proyecto_img = wp_get_attachment_url( get_post_thumbnail_id($proyecto->ID, 'full') ); // Url de la imagen en tamaño Full
-              $proyecto_fecha = $proyecto->fecha_proyecto;
-              $proyecto_ubicacion = $proyecto->ubicacion;
-              $proyecto_reto = $proyecto->tab_reto;
-              $proyecto_solucion = $proyecto->tab_solucion;
+                $proyecto_name = $proyecto->post_title;
+                $proyecto_img = wp_get_attachment_url( get_post_thumbnail_id($proyecto->ID, 'full') ); // Url de la imagen en tamaño Full
+                $proyecto_fecha = $proyecto->fecha_proyecto;
+                $proyecto_ubicacion = $proyecto->ubicacion;
+                $proyecto_reto = $proyecto->tab_reto;
+                $proyecto_solucion = $proyecto->tab_solucion;
       ?>
         <div>
             <div class="row mx-0">
                 <div class="col-12 col-md-6">
-                    <a href="#" onclick="restartSlick()" data-toggle="modal" class="d-block img-pop" data-target="#exampleModal">
+                    <a href="#" onclick="restartSlick()" data-toggle="modal" class="d-block img-pop" data-target="#<?php echo $proyecto->post_name ?>">
                         <img src="<?php echo $proyecto_img;?>" alt="" class="img-fluid">
                     </a>
                     <div class="carousel-text d-flex bg-blue play-font color-yellow flex-wrap">
@@ -228,6 +228,54 @@
             endif; 
         ?>
     </div>
+    <!-- Modal -->
+    <?php 
+        // Argumentos para una busqueda de post type
+        $args = array(
+          'post_type' => 'proyecto', // Nombre del post type
+          'order' => 'ASC'
+        );
+        $proyectos = new WP_Query($args);
+        if ($proyectos->posts):
+            foreach ($proyectos->posts as $proyecto):
+    ?>
+    <div class="modal fade show" id="<?php echo $proyecto->post_name; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-blue">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true" class="color-yellow">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body px-0 py-0">
+                    <div class="slide">
+                        <?php 
+                            // Foreach para recorrer el resultado de la busqueda
+                                $argsImage = array( 
+                                    'post_type' => 'attachment', 
+                                    'post_mime_type' => 'image',
+                                    'numberposts' => -1,
+                                    'post_status' => null,
+                                    'exclude' => get_post_thumbnail_id($proyecto->ID, 'full') ,
+                                    'post_parent' => $proyecto->ID 
+                                ); 
+                                $attached_images = get_posts( $argsImage );
+                                foreach ($attached_images as $image):
+                        ?>
+                            <div><img src="<?php echo $image->guid; ?>" class="img-fluid"></div>
+                        <?php
+                                endforeach;
+                        ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php 
+        endforeach;
+    endif;
+    ?>
 </section>
 
 <section class="container-fluid marcas">
