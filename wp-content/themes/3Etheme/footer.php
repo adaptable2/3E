@@ -22,9 +22,9 @@
             </div>
             <div class="modal-body px-0 py-0">
                 <div class="slide">
-                    <div><img src="<?php echo get_template_directory_uri(); ?>/img/carouselimg.jpg" class="img-fluid"></div>
-                    <div><img src="<?php echo get_template_directory_uri(); ?>/img/carouselimg.jpg" class="img-fluid"></div>
-                    <div><img src="<?php echo get_template_directory_uri(); ?>/img/carouselimg.jpg" class="img-fluid"></div>
+                    <div><img src="<?php echo get_template_directory_uri(); ?>/img/carouselImg.jpg" class="img-fluid"></div>
+                    <div><img src="<?php echo get_template_directory_uri(); ?>/img/carouselImg.jpg" class="img-fluid"></div>
+                    <div><img src="<?php echo get_template_directory_uri(); ?>/img/carouselImg.jpg" class="img-fluid"></div>
                 </div>
 
             </div>

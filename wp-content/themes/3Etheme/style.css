@@ -507,13 +507,40 @@ footer .arrow-move {
   border-left: solid 2px #003E52;
 }
 
+.slick-arrow {
+  z-index: 1;
+  position: absolute;
+  bottom: inherit;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #F9BE00;
+  font: 0/0 a;
+  border: none;
+  outline: inherit;
+  width: 40px;
+  height: 40px;
+  display: block;
+}
+.slick-arrow:after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin-left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.carousel-pop .slick-arrow {
+  top: 20%;
+  transform: translateY(-20%);
+}
 @media only screen and (min-width: 576px) {
   .carousel-pop .slick-arrow {
     top: 40%;
     transform: translateY(-40%);
   }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 992px) {
   .carousel-pop .slick-arrow {
     bottom: 99px;
     top: inherit;
@@ -537,40 +564,15 @@ footer .arrow-move {
   }
 }
 
-.slick-arrow {
-  z-index: 1;
-  position: absolute;
-  bottom: inherit;
-  top: 20%;
-  transform: translateY(-20%);
-  background: #F9BE00;
-  font: 0/0 a;
-  border: none;
-  outline: inherit;
-  width: 40px;
-  height: 40px;
-  display: block;
-  top: 50%;
-  transform: translateY(-50%);
-}
-.slick-arrow:after {
-  content: "";
-  display: block;
-  width: 10px;
-  height: 10px;
-  margin-left: 50%;
-  transform: translateX(-50%) rotate(-45deg);
-}
-
 @font-face {
   font-family: "Play";
-  src: url("../fonts/Play-Regular.woff2") format("woff2"), url("../fonts/Play-Regular.woff") format("woff");
+  src: url("fonts/Play-Regular.woff2") format("woff2"), url("fonts/Play-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: "Play";
-  src: url("../fonts/Play-Bold.woff2") format("woff2"), url("../fonts/Play-Bold.woff") format("woff");
+  src: url("fonts/Play-Bold.woff2") format("woff2"), url("fonts/Play-Bold.woff") format("woff");
   font-weight: bold;
   font-style: normal;
 }
